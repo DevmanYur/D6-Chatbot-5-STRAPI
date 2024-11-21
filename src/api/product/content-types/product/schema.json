@@ -29,6 +29,12 @@
     },
     "price": {
       "type": "decimal"
+    },
+    "cartitems": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::cartitem.cartitem",
+      "mappedBy": "product"
     }
   }
 }
