@@ -425,9 +425,69 @@ export interface ApiCartitemCartitem extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiInfoInfo extends Struct.SingleTypeSchema {
+  collectionName: 'infos';
+  info: {
+    description: '';
+    displayName: 'Info';
+    pluralName: 'infos';
+    singularName: 'info';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Close_privetstvie: Schema.Attribute.Text;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::info.info'> &
+      Schema.Attribute.Private;
+    Open_Close: Schema.Attribute.Boolean;
+    Open_privetstvie: Schema.Attribute.Text;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiMenuPartMenuPart extends Struct.CollectionTypeSchema {
+  collectionName: 'menu_parts';
+  info: {
+    description: '';
+    displayName: 'Menu_part';
+    pluralName: 'menu-parts';
+    singularName: 'menu-part';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::menu-part.menu-part'
+    > &
+      Schema.Attribute.Private;
+    Menu_part: Schema.Attribute.String;
+    products: Schema.Attribute.Relation<'oneToMany', 'api::product.product'>;
+    publishedAt: Schema.Attribute.DateTime;
+    Sortirovka: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<100>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiProductProduct extends Struct.CollectionTypeSchema {
   collectionName: 'products';
   info: {
+    description: '';
     displayName: 'PRODUCT';
     pluralName: 'products';
     singularName: 'product';
@@ -447,9 +507,16 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
       'api::product.product'
     > &
       Schema.Attribute.Private;
+    menu_part: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::menu-part.menu-part'
+    >;
+    Novinka: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     picture: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    Porciya: Schema.Attribute.String;
     price: Schema.Attribute.Decimal;
     publishedAt: Schema.Attribute.DateTime;
+    Sortirovka: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<100>;
     title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -968,6 +1035,8 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::cart.cart': ApiCartCart;
       'api::cartitem.cartitem': ApiCartitemCartitem;
+      'api::info.info': ApiInfoInfo;
+      'api::menu-part.menu-part': ApiMenuPartMenuPart;
       'api::product.product': ApiProductProduct;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

@@ -4,7 +4,8 @@
   "info": {
     "singularName": "product",
     "pluralName": "products",
-    "displayName": "PRODUCT"
+    "displayName": "PRODUCT",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -18,14 +19,15 @@
       "type": "text"
     },
     "picture": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "price": {
       "type": "decimal"
@@ -35,6 +37,23 @@
       "relation": "oneToMany",
       "target": "api::cartitem.cartitem",
       "mappedBy": "product"
+    },
+    "menu_part": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::menu-part.menu-part",
+      "inversedBy": "products"
+    },
+    "Novinka": {
+      "type": "boolean",
+      "default": false
+    },
+    "Sortirovka": {
+      "type": "integer",
+      "default": 100
+    },
+    "Porciya": {
+      "type": "string"
     }
   }
 }

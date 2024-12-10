@@ -1,0 +1,25 @@
+{
+    "kind": "singleType",
+    "collectionName": "infos",
+    "info": {
+        "singularName": "info",
+        "pluralName": "infos",
+        "displayName": "Info",
+        "description": ""
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "Open_Close": {
+            "type": "boolean"
+        },
+        "Open_privetstvie": {
+            "type": "text"
+        },
+        "Close_privetstvie": {
+            "type": "text"
+        }
+    }
+}

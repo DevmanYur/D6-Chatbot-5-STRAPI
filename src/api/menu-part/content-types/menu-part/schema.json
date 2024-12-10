@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "menu_parts",
+  "info": {
+    "singularName": "menu-part",
+    "pluralName": "menu-parts",
+    "displayName": "Menu_part",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Menu_part": {
+      "type": "string"
+    },
+    "products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product.product",
+      "mappedBy": "menu_part"
+    },
+    "Sortirovka": {
+      "type": "integer",
+      "default": 100
+    }
+  }
+}
